@@ -13,11 +13,17 @@
       <button (click)="switchSecretStatus()" class="btn btn-primary" type="button">Display Secrets</button>
       <span style="height:40px; margin:10px;" *ngIf="secretOut" >Password = Starfish</span>
       <ul>
-        <li
+        <!-- <li
           *ngFor="let log of logs;"
           [ngStyle]="{ backgroundColor: logs.indexOf(log) > 5 ? 'blue' : 'white' }"
           [ngClass]="{ bgwhite: logs.indexOf(log) > 5 ? true : false }">
           Log: {{ logs.indexOf(log) }} {{ log }}
+        </li> -->
+        <li
+          *ngFor="let log of logs; let i = index"
+          [ngStyle]="{ backgroundColor: i > 5 ? 'blue' : 'white' }"
+          [ngClass]="{ bgwhite: i > 5 ? true : false }">
+          Log: {{ i }} {{ log }}
         </li>
       </ul>
 
