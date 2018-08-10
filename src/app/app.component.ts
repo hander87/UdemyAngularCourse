@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  userName = 'Hannes';
+
+  isEmpty() {
+    if (this.userName !== '') {
+      return true;
+    }
+  }
+
 }
