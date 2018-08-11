@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="btn-group">
+      <button [disabled]="timerGoing" (click)="gameStart()" class="btn btn-success">Start</button>
+      <button [disabled]="!timerGoing" (click)="gameStop()" class="btn btn-warning">Stop</button>
+    </div>
+    <h4>{{ timerNumber }}</h4>
+  </div>
+</div>
