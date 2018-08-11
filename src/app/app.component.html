@@ -13,12 +13,10 @@
         <li>Style the element (e.g. paragraph) holding your output text differently in both components</li>
       </ol>
       <hr>
-      <app-game-control></app-game-control>
+      <app-game-control (numberEvent)="numberFromGameControl($event)"></app-game-control>
       <hr>
-      <app-odd></app-odd>
-      <app-even></app-even>
-      <hr>
-      <p>ROOT: {{ timerNumber }}</p>
+      <app-odd [numberOddState]="theOddTimerNumber"></app-odd>
+      <app-even [numberEvenState]="theEvenTimerNumber"></app-even>
     </div>
   </div>
 </div>
