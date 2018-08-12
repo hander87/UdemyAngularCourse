@@ -2,13 +2,13 @@
   href="#"
   class="list-group-item clearfix">
   <div class="pull-left col-xs-8">
-    <h4 class="list-group-item-heading">{{ recipeData.name }}</h4>
-    <p class="list-group-item-text">{{ recipeData.description }}</p>
+    <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+    <p class="list-group-item-text">{{ recipe.description }}</p>
   </div>
   <span class="pull-right col-xs-4">
     <img
-      [src]="recipeData.imagePath"
-      [alt]="recipeData.name"
+      [src]="recipe.imagePath"
+      [alt]="recipe.name"
       class="img-responsive pull-right square"
       style="max-height: 50px">
   </span>
