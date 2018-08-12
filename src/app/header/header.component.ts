@@ -7,13 +7,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() topmenuClicked: EventEmitter<string> = new EventEmitter();
-
+  @Output() topmenuClicked: EventEmitter<string> = new EventEmitter<string>();
   @Input() pageStatus: string;
 
   constructor() { }
 
-  onSelect(site) {
+  onSelect(site: string) {
     this.topmenuClicked.emit(site);
   }
 

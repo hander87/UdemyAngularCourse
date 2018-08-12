@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   currentPage: string = 'recipies';
 
-  activateTopMenuPages(site) {
-    this.currentPage = site;
+  activateTopMenuPages(page: string) {
+    this.currentPage = page;
   }
 
 }
