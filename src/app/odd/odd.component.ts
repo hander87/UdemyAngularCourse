@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OddComponent implements OnInit {
 
-  @Input() numberOddState: number;
   @Input() numberOddArray: number[];
 
   constructor() { }

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h3>Bind it!</h3>
+      <h3>Assignment 4 - Bind it!</h3>
       <hr>
       <app-game-control (numberEvent)="numberFromGameControl($event)"></app-game-control>
       <hr>
@@ -9,14 +9,12 @@
         <div class="col-xs-6">
           <app-odd
             *ngFor="let oddNumberItem of oddNumberArray"
-            [numberOddState]="theOddTimerNumber"
             [numberOddArray]="oddNumberItem">
           </app-odd>
         </div>
         <div class="col-xs-6">
           <app-even
             *ngFor="let evenNumberItem of evenNumberArray"
-            [numberEvenState]="theEvenTimerNumber"
             [numberEvenArray]="evenNumberItem">
           </app-even>
         </div>

@@ -7,7 +7,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EvenComponent implements OnInit {
 
-  @Input() numberEvenState: number;
   @Input() numberEvenArray: number[];
 
   constructor() { }
