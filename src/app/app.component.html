@@ -1,15 +1,9 @@
-<app-header></app-header>
+<app-header (topmenuClicked)="activateTopMenuPages($event)" [pageStatus]="currentPage"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <app-recipe-book></app-recipe-book>
-      <app-shopping-list></app-shopping-list>
+      <app-recipe-book *ngIf="currentPage == 'recipies'"></app-recipe-book>
+      <app-shopping-list *ngIf="currentPage == 'shoppinglist'"></app-shopping-list>
     </div>
   </div>
 </div>
