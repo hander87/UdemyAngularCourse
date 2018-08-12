@@ -7,16 +7,10 @@ import { Directive, HostListener, HostBinding } from '@angular/core';
 export class DropdownDirective {
   dropDownStatus = false;
 
-  @HostBinding('class') class = '';
+  @HostBinding('class.open') isTrue = false;
 
   @HostListener('click') mouseclick(eventData: Event) {
-    if (this.dropDownStatus == false) {
-      this.class = 'open';
-      this.dropDownStatus = true;
-    } else {
-      this.class = '';
-      this.dropDownStatus = false;
-    }
+    this.isTrue = !this.isTrue;
 
   }
 }
