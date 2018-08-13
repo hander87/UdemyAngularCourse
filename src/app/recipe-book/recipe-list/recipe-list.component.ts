@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeBookListService } from '../../shared/recipe-book.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,20 +8,12 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  @Output() clickedRecipe = new EventEmitter<Recipe>();
+  recipes: Recipe[];
 
-  recipes: Recipe[] = [
-    new Recipe('Test Recipe', 'This is desc for Test Resipe', 'https://www.inspiredtaste.net/wp-content/uploads/2013/01/Roasted-Pepper-Pinwheel-Pastry-Recipe-2-1200.jpg'),
-    new Recipe('Test Recipe 2', 'This is ANOTHER desc for Test Resipe', 'https://minimalistbaker.com/wp-content/uploads/2016/08/AMAZING-Chickpea-SHAKSHUKA-1-Pot-30-minutes-so-much-plantprotein-vegan-glutenfree-plantbased-shakshuka-recipe-easy-healthy.jpg')
-  ];
-
-  selectedRecipe(recipeItem: Recipe) {
-    this.clickedRecipe.emit(recipeItem);
-  }
-
-  constructor() { }
+  constructor(private recipeBookListService: RecipeBookListService) { }
 
   ngOnInit() {
+    this.recipes = this.recipeBookListService.getRecipes();
   }
 
 }
