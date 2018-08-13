@@ -4,37 +4,30 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-
-import { HeaderComponent } from './header/header.component';
-
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
-
-import { RecipeBookComponent } from './recipe-book/recipe-book.component';
-import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipe-book/recipe-list/recipe-item/recipe-item.component';
-import { RecipeListComponent } from './recipe-book/recipe-list/recipe-list.component';
-import { DropdownDirective } from './shared/dropdown.directive';
-import { ShoppingListService } from './shared/shopping-list.service';
+import { HomeComponent } from './home/home.component';
+import { UsersComponent } from './users/users.component';
+import { ServersComponent } from './servers/servers.component';
+import { UserComponent } from './users/user/user.component';
+import { EditServerComponent } from './servers/edit-server/edit-server.component';
+import { ServerComponent } from './servers/server/server.component';
+import { ServersService } from './servers/servers.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    ShoppingListComponent,
-    ShoppingListEditComponent,
-    RecipeBookComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeListComponent,
-    DropdownDirective
+    HomeComponent,
+    UsersComponent,
+    ServersComponent,
+    UserComponent,
+    EditServerComponent,
+    ServerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [ShoppingListService],
+  providers: [ServersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
