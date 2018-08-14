@@ -4,6 +4,8 @@
 // Declaring a variable with a type
 // Using the 'let' keyword to create a variable ('const' would define an immutable constant)
 
+// INIT COURSE SECTION
+
 let myString: string;
 
 myString = 'This is a string';
