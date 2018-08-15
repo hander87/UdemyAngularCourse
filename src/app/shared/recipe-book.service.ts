@@ -36,6 +36,10 @@ export class RecipeBookListService {
     return this.recipes.slice();
   }
 
+  getRecipe(index: number) {
+    return this.recipes[index];
+  }
+
   addToShoppingList(recipeIngridients: Ingridient[]) {
     // for (let i = 0; i < recipeIngridients.length; i++) {
     //     this.recipeBookListService.addIngridient(recipeIngridients[i]);

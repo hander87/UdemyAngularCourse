@@ -1,5 +1,6 @@
 <a
-  (click)="onSelected()"
+  [routerLink]="[index]"
+  routerLinkActive="active"
   class="list-group-item clearfix">
   <div class="pull-left col-xs-8">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
