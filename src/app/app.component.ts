@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,26 +6,5 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('form') subForm: NgForm;
-  defaultSubscription = 'advanced';
-  subs = {
-    email: '',
-    subscription: '',
-    password: ''
-  };
-  formSent = false;
-
-  onSubmit() {
-    console.log(this.subForm);
-
-    this.subs.email = this.subForm.value.email;
-    this.subs.subscription = this.subForm.value.subscription;
-    this.subs.password = this.subForm.value.password;
-    this.formSent = true;
-
-    console.log(this.subs.email);
-    console.log(this.subs.subscription);
-    console.log(this.subs.password);
-  }
-
+  genders = ['male', 'female'];
 }
