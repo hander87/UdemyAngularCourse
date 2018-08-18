@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +9,30 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   genders = ['male', 'female', 'other'];
   signupForm: FormGroup;
+  forbiddenUserNames = ['Chris', 'Anna'];
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      userData: new FormGroup({
-        username: new FormControl(null, Validators.required),
-        email: new FormControl(null, [Validators.required, Validators.email])
+      'userData': new FormGroup({
+        'username': new FormControl(null, Validators.required),
+        'email': new FormControl(null, [Validators.required, Validators.email])
       }),
-      gender: new FormControl('male')
+      'gender': new FormControl('male'),
+      'hobbies': new FormArray([])
     });
   }
 
   onSubmit() {
     console.log(this.signupForm);
   }
+
+  getHobbies() {
+    return (<FormArray>this.signupForm.get('hobbies')).controls;
+  }
+
+  onAddHobby() {
+    const controls = new FormControl(null, Validators.required);
+    (<FormArray>this.signupForm.get('hobbies')).push(controls);
+  }
+
 }
