@@ -8,7 +8,8 @@
         <div class="col-xs-12">
           <button
             class="btn btn-success"
-            type="submit">Save</button>
+            type="submit"
+            [disabled]="!recipeForm.valid">Save</button>
           <button
             class="btn btn-danger"
             type="button">Cancel</button>
