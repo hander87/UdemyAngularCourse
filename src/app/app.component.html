@@ -11,7 +11,7 @@
             {{ server.status }}
           </span>
           <strong>
-            {{ server.name | shorten }}
+            {{ server.name | shorten:15 }}
           </strong> |
           {{ server.instanceType | titlecase }} |
           {{ server.started | date:'fullDate' | uppercase }}
