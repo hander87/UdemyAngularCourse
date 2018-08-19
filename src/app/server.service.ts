@@ -8,7 +8,8 @@ export class ServerService {
 
   storeServers(servers: any[]) {
     const myHeaders = new Headers({'Content-Type': 'application/json'});
-    return this.http.post(this.fblink, servers, {headers: myHeaders});
+    // return this.http.post(this.fblink, servers, {headers: myHeaders});
+    return this.http.put(this.fblink, servers, {headers: myHeaders});
   }
 
   getServers() {
