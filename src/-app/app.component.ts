@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,23 +10,23 @@ export class AppComponent {
     setTimeout(() => {
       resolve('stable');
     }, 2000);
-  });
+  }); // To emulate http-call for ex. Uses ASYNC pipe.
   servers = [
     {
       instanceType: 'medium',
-      name: 'Production',
+      name: 'Production Server',
       status: 'stable',
       started: new Date(15, 1, 2017)
     },
     {
       instanceType: 'large',
-      name: 'User Database',
+      name: 'User',
       status: 'stable',
       started: new Date(15, 1, 2017)
     },
     {
       instanceType: 'small',
-      name: 'Development Server',
+      name: 'Server',
       status: 'offline',
       started: new Date(15, 1, 2017)
     },
@@ -37,7 +37,9 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
+
   filteredStatus = '';
+
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
     return {
       'list-group-item-success': server.status === 'stable',
@@ -45,10 +47,11 @@ export class AppComponent {
       'list-group-item-danger': server.status === 'critical'
     };
   }
+
   onAddServer() {
     this.servers.push({
       instanceType: 'small',
-      name: 'New Server',
+      name: 'New Server test',
       status: 'stable',
       started: new Date(15, 1, 2017)
     });
