@@ -8,7 +8,7 @@ import { Observable, throwError } from 'rxjs';
 @Injectable()
 export class ServerService {
   constructor(private http: Http) {}
-  fblink = 'https://udemyangularcourse-http.firebaseio.com/data';
+  fblink = 'https://udemyangularcourse-http.firebaseio.com/data.json';
 
   storeServers(servers: any[]) {
     const myHeaders = new Headers({'Content-Type': 'application/json'});
@@ -31,6 +31,14 @@ export class ServerService {
         return throwError('Something went wrong :( ' + error);
       }
     ));
+  }
+  getAppName() {
+    return this.http.get('https://udemyangularcourse-http.firebaseio.com/appName.json')
+      .pipe(map(
+        (response: Response) => {
+          return response.json();
+        }
+      ));
   }
 
 }
