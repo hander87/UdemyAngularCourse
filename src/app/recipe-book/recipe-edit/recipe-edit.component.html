@@ -1,2 +1,81 @@
 <h3 *ngIf="!editMode">New Recipe</h3>
 <h3 *ngIf="editMode">Edit Recipe</h3>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            class="btn btn-success"
+            type="submit">Save</button>
+          <button
+            class="btn btn-danger"
+            type="button">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              class="form-control"
+              type="text">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">Image URL</label>
+            <input
+              id="imagePath"
+              class="form-control"
+              type="text">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <img
+            src=""
+            alt=""
+            class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              rows="3"
+              class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-7">
+                  <input
+                  class="form-control"
+                  type="text">
+              </div>
+              <div class="col-xs-3">
+                  <input
+                  class="form-control"
+                  type="number">
+              </div>
+              <div class="col-xs-2">
+                  <button class="btn btn-danger">X</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
