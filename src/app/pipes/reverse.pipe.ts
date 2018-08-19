@@ -6,9 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ReversePipe implements PipeTransform {
 
   transform(value: string)  {
-    const stringToReverse: string = value;
-    const stringArray = stringToReverse.split('').reverse().join('');
 
-    return stringArray;
+    return value.split('').reverse().join('');
+
   }
 }
