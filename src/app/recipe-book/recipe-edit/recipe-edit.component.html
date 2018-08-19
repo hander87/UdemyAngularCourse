@@ -62,8 +62,9 @@
       <div class="row">
           <div
             class="col-xs-12" formArrayName="ingridients">
+            <label>Ingridients</label>
             <div
-              class="row"
+              class="row ingridients-rows"
               *ngFor="let ingridient of getControls(); let i = index"
               [formGroupName]="i">
               <div class="col-xs-7">
@@ -80,6 +81,15 @@
               </div>
               <div class="col-xs-2">
                   <button class="btn btn-danger">X</button>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-xs-12">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  (click)="onAddIngridient()">Add Ingridient</button>
               </div>
             </div>
 
