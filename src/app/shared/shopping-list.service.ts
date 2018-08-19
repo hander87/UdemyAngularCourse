@@ -3,6 +3,7 @@ import { Subject } from 'rxjs/Subject';
 
 export class ShoppingListService {
   ingridientsChanged = new Subject<Ingridient[]>();
+  startedEditing = new Subject<number>();
 
   private ingridients: Ingridient[] = [
     new Ingridient('Apples', 5),
@@ -11,6 +12,10 @@ export class ShoppingListService {
 
   getShoppingIngridient() {
     return this.ingridients.slice();
+  }
+
+  getIngridient(index: number) {
+    return this.ingridients[index];
   }
 
   addIngridient(ingridient: Ingridient) {
