@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 // import 'rxjs/Rx';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+
 
 @Injectable()
 export class ServerService {
   constructor(private http: Http) {}
-  fblink = 'https://udemyangularcourse-http.firebaseio.com/data.json';
+  fblink = 'https://udemyangularcourse-http.firebaseio.com/data';
 
   storeServers(servers: any[]) {
     const myHeaders = new Headers({'Content-Type': 'application/json'});
@@ -24,7 +26,11 @@ export class ServerService {
           }
           return data;
         }
-      ));
+      )
+    ).pipe(catchError((error: Response) => {
+        return throwError('Something went wrong :( ' + error);
+      }
+    ));
   }
 
 }
