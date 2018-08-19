@@ -11,4 +11,8 @@ export class ServerService {
     return this.http.post(this.fblink, servers, {headers: myHeaders});
   }
 
+  getServers() {
+    return this.http.get(this.fblink);
+  }
+
 }
