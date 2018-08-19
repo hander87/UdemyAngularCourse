@@ -23,11 +23,6 @@ export class HeaderComponent {
   }
 
   fetchData() {
-    return this.databaseService.getRecipes()
-      .subscribe(
-        (response: Response) => {
-          console.log(response);
-        }
-      );
+    this.databaseService.getRecipes();
   }
 }
