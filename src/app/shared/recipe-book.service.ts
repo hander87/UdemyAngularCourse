@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Recipe } from '../recipe-book/recipe.model';
 import { Ingridient } from './ingridient.model';
 import { ShoppingListService } from '../shared/shopping-list.service';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class RecipeBookListService {
+  recipesChanged = new Subject<Recipe[]>();
 
   private recipes: Recipe[] = [
     new Recipe(
@@ -20,7 +22,8 @@ export class RecipeBookListService {
     new Recipe(
       'Test Recipe 2',
       'This is ANOTHER desc for Test Resipe',
-      'https://minimalistbaker.com/wp-content/uploads/2016/08/AMAZING-Chickpea-SHAKSHUKA-1-Pot-30-minutes-so-much-plantprotein-vegan-glutenfree-plantbased-shakshuka-recipe-easy-healthy.jpg',
+      'https://minimalistbaker.com/wp-content/uploads/2016/08/AMAZING-Chickpea-SHAKSHUKA-1-Pot-30-minutes-so-' +
+      'much-plantprotein-vegan-glutenfree-plantbased-shakshuka-recipe-easy-healthy.jpg',
       [
         new Ingridient('Banana', 1),
         new Ingridient('Chockalate', 11),
@@ -39,11 +42,17 @@ export class RecipeBookListService {
   }
 
   addToShoppingList(recipeIngridients: Ingridient[]) {
-    // for (let i = 0; i < recipeIngridients.length; i++) {
-    //     this.recipeBookListService.addIngridient(recipeIngridients[i]);
-    //}
-
     this.shoppingListService.addIngridients(recipeIngridients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipes[index] = newRecipe;
+    this.recipesChanged.next(this.recipes.slice());
   }
 
 }
