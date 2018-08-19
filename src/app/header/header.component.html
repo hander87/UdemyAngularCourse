@@ -23,8 +23,8 @@
         <li class="dropdown pull-right" appDropdown>
           <a class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a >Saving Data</a></li>
-            <li><a >Fetching Data</a></li>
+            <li><a (click)="saveData()">Save Changes</a></li>
+            <li><a (click)="fetchData()">Fetch (Overwrite)</a></li>
           </ul>
         </li>
       </ul>

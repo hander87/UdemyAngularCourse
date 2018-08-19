@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Response } from '@angular/http';
+
+import { DatabaseService } from '../shared/database.service';
+import { RecipeBookListService } from '../shared/recipe-book.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +11,23 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(
+    private databaseService: DatabaseService
+  ) { }
 
-  constructor() { }
-
-
-  ngOnInit() {
+  saveData() {
+    return this.databaseService.saveRecipes()
+      .subscribe(
+        (response: Response) => console.log(response)
+      );
   }
 
+  fetchData() {
+    return this.databaseService.getRecipes()
+      .subscribe(
+        (response: Response) => {
+          console.log(response);
+        }
+      );
+  }
 }
