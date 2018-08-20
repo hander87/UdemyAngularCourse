@@ -10,6 +10,7 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.component';
 
 import { RecipeRoutingModule } from './recipe.list-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,9 @@ import { RecipeRoutingModule } from './recipe.list-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RecipeRoutingModule
+    RecipeRoutingModule,
+    SharedModule
   ]
-
 })
 export class RecipebookModule {
 
