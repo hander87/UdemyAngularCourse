@@ -18,6 +18,9 @@ import { RecipeStartComponent } from './recipe-book/recipe-start/recipe-start.co
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 import { RecipeBookListService } from './shared/recipe-book.service';
 import { DatabaseService } from './shared/database.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { DatabaseService } from './shared/database.service';
     RecipeListComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,12 @@ import { DatabaseService } from './shared/database.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipeBookListService, DatabaseService],
+  providers: [
+    ShoppingListService,
+    RecipeBookListService,
+    DatabaseService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

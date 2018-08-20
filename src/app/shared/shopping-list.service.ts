@@ -1,5 +1,5 @@
 import { Ingridient } from './ingridient.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 export class ShoppingListService {
   ingridientsChanged = new Subject<Ingridient[]>();

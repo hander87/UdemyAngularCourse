@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { Ingridient } from '../../shared/ingridient.model';
 import {ShoppingListService} from '../../shared/shopping-list.service';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list-edit',
