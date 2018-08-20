@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import { map } from 'rxjs/operators';
 
 import { RecipeBookListService } from './recipe-book.service';
 import { Recipe } from '../recipe-book/recipe.model';
 import { AuthService } from '../auth/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DatabaseService {
   constructor(
-    private http: Http,
+    private httpClient: HttpClient,
     private recipeService: RecipeBookListService,
     private authService: AuthService
   ) {}
@@ -17,16 +18,15 @@ export class DatabaseService {
 
   saveRecipes() {
     const token = this.authService.getToken();
-    return this.http.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes());
   }
 
   getRecipes() {
     const token = this.authService.getToken();
 
-    return this.http.get(this.fblink + '/recipes.json?auth=' + token)
+    return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json?auth=' + token)
       .pipe(map(
-        (response: Response) => {
-          const recipes: Recipe[] = response.json();
+        (recipes) => {
           for (const recipe of recipes) {
             if (!recipe['ingridients']) {
               console.log(recipe);
