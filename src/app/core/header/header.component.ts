@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Response } from '@angular/http';
 
-import { DatabaseService } from '../shared/database.service';
-import { RecipeBookListService } from '../shared/recipe-book.service';
-import { AuthService } from '../auth/auth.service';
+import { DatabaseService } from '../../shared/database.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
