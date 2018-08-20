@@ -24,16 +24,22 @@ export class DatabaseService {
   getRecipes() {
     const token = this.authService.getToken();
 
-    return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json?auth=' + token)
+    // return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json?auth=' + token)
+    return this.httpClient.get(this.fblink + '/recipes.json?auth=' + token, {
+        observe: 'response',
+        responseType: 'text'
+      })
       .pipe(map(
         (recipes) => {
-          for (const recipe of recipes) {
-            if (!recipe['ingridients']) {
-              console.log(recipe);
-              recipe['ingridients'] = [];
-            }
-          }
-          return recipes;
+          console.log(recipes); // This gives FULL HttpResponse! (body, header etc)
+          // for (const recipe of recipes) {
+          //   if (!recipe['ingridients']) {
+          //     console.log(recipe);
+          //     recipe['ingridients'] = [];
+          //   }
+          // }
+          // return recipes;
+          return [];
         }
       ))
       .subscribe(
