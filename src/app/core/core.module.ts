@@ -4,6 +4,10 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routes.module';
+import { ShoppingListService } from '../shared/shopping-list.service';
+import { RecipeBookListService } from '../shared/recipe-book.service';
+import { DatabaseService } from '../shared/database.service';
+import { AuthService } from '../auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,12 @@ import { AppRoutingModule } from '../app-routes.module';
   ], exports: [
     AppRoutingModule,
     HeaderComponent
+  ],
+  providers: [
+    ShoppingListService,
+    RecipeBookListService,
+    DatabaseService,
+    AuthService,
   ]
 })
 export class CoreModule {}
