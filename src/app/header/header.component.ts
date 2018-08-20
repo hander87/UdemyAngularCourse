@@ -3,6 +3,7 @@ import { Response } from '@angular/http';
 
 import { DatabaseService } from '../shared/database.service';
 import { RecipeBookListService } from '../shared/recipe-book.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ import { RecipeBookListService } from '../shared/recipe-book.service';
 export class HeaderComponent {
 
   constructor(
-    private databaseService: DatabaseService
+    private databaseService: DatabaseService,
+    private authService: AuthService
   ) { }
 
   saveData() {
@@ -25,4 +27,9 @@ export class HeaderComponent {
   fetchData() {
     this.databaseService.getRecipes();
   }
+
+  checkAuth() {
+    return this.authService.isAuthenticated();
+  }
+
 }

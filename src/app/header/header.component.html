@@ -21,13 +21,15 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active">
-          <a routerLink="/signup">Register</a>
-        </li>
-        <li routerLinkActive="active">
-          <a routerLink="/signin">Log In</a>
-        </li>
-        <li class="dropdown pull-right" appDropdown>
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li routerLinkActive="active">
+            <a routerLink="/signup">Register</a>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/signin">Log In</a>
+          </li>
+        </ng-template>
+        <li class="dropdown pull-right" appDropdown *ngIf="checkAuth()">
           <a class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
             <span class="caret"></span>
           </a>
