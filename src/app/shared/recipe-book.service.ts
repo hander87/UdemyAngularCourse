@@ -11,22 +11,13 @@ export class RecipeBookListService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'Test Recipe',
-      'This is desc for Test Resipe',
-      'https://www.inspiredtaste.net/wp-content/uploads/2013/01/Roasted-Pepper-Pinwheel-Pastry-Recipe-2-1200.jpg',
+      'Pie (example)',
+      'This is an example of recipes you can create',
+      'https://image.flaticon.com/icons/svg/135/135564.svg',
       [
         new Ingridient('Apples', 4),
-        new Ingridient('Bread', 1)
-      ]
-    ),
-    new Recipe(
-      'Test Recipe 2',
-      'This is ANOTHER desc for Test Resipe',
-      'https://minimalistbaker.com/wp-content/uploads/2016/08/AMAZING-Chickpea-SHAKSHUKA-1-Pot-30-minutes-so-' +
-      'much-plantprotein-vegan-glutenfree-plantbased-shakshuka-recipe-easy-healthy.jpg',
-      [
-        new Ingridient('Banana', 1),
-        new Ingridient('Chockalate', 11),
+        new Ingridient('Dough', 1),
+        new Ingridient('Butter', 1),
       ]
     )
   ];
