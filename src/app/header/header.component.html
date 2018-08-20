@@ -21,7 +21,7 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!authService.isAuthenticated()">
+        <ng-template [ngIf]="!checkAuth()">
           <li routerLinkActive="active">
             <a routerLink="/signup">Register</a>
           </li>
@@ -29,6 +29,9 @@
             <a routerLink="/signin">Log In</a>
           </li>
         </ng-template>
+        <li *ngIf="checkAuth()">
+            <a (click)="onLogout()">Log Out</a>
+          </li>
         <li class="dropdown pull-right" appDropdown *ngIf="checkAuth()">
           <a class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
             <span class="caret"></span>
