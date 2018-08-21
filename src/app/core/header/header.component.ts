@@ -19,7 +19,7 @@ export class HeaderComponent {
   saveData() {
     return this.databaseService.saveRecipes()
       .subscribe(
-        (response: Response) => console.log(response)
+        (response) => console.log(response)
       );
   }
 

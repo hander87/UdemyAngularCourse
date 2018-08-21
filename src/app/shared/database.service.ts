@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { RecipeBookListService } from './recipe-book.service';
 import { Recipe } from '../recipe-book/recipe.model';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 
 @Injectable()
 export class DatabaseService {
@@ -16,15 +16,24 @@ export class DatabaseService {
   ) {}
   fblink = 'https://udemyangularcourse-courseapp.firebaseio.com';
 
-  // const headers = new HttpHeaders().set('Authorization',  'Bearer *TOKEN CODE*').append('...More headers');
 
   saveRecipes() {
+    // const headers = new HttpHeaders().set('Authorization',  'Bearer *TOKEN CODE*').append('...More headers');
+
     const token = this.authService.getToken();
-    return this.httpClient.put(this.fblink + '/recipes.json', this.recipeService.getRecipes(), {
-      observe: 'body',
+
+    // return this.httpClient.put(this.fblink + '/recipes.json', this.recipeService.getRecipes(), {
+    //   observe: 'body',
+    //   params: new HttpParams().set('auth', token)
+    //   // headers: headers
+    // });
+
+    const req = new HttpRequest('PUT', this.fblink, this.recipeService.getRecipes(), {
+      reportProgress: true, // Gets the download PROGRESS // Type 1 = download, 2 = upload
       params: new HttpParams().set('auth', token)
-      // headers: headers
     });
+    return this.httpClient.request(req);
+
   }
 
   getRecipes() {
