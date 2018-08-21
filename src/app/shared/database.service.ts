@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { RecipeBookListService } from './recipe-book.service';
 import { Recipe } from '../recipe-book/recipe.model';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class DatabaseService {
@@ -20,8 +20,9 @@ export class DatabaseService {
 
   saveRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes(), {
+    return this.httpClient.put(this.fblink + '/recipes.json', this.recipeService.getRecipes(), {
       observe: 'body',
+      params: new HttpParams().set('auth', token)
       // headers: headers
     });
   }
