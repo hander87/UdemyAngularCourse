@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
+import { Response, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 
 import { RecipeBookListService } from './recipe-book.service';
 import { Recipe } from '../recipe-book/recipe.model';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class DatabaseService {
@@ -16,9 +16,14 @@ export class DatabaseService {
   ) {}
   fblink = 'https://udemyangularcourse-courseapp.firebaseio.com';
 
+  // const headers = new HttpHeaders().set('Authorization',  'Bearer *TOKEN CODE*').append('...More headers');
+
   saveRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes(), {
+      observe: 'body',
+      // headers: headers
+    });
   }
 
   getRecipes() {
