@@ -18,7 +18,10 @@ export class DatabaseService {
 
   saveRecipes() {
     const token = this.authService.getToken();
-    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes());
+    return this.httpClient.put(this.fblink + '/recipes.json?auth=' + token, this.recipeService.getRecipes(),
+      {
+        observe: 'events'
+      });
   }
 
   getRecipes() {
