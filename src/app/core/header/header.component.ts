@@ -1,38 +1,32 @@
 import { Component } from '@angular/core';
-import { Response } from '@angular/http';
+// import { HttpEvent, HttpEventType } from '@angular/common/http';
 
-import { DatabaseService } from '../../shared/database.service';
+import { DataStorageService } from '../../shared/data-storage.service';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent {
+  constructor(private dataStorageService: DataStorageService,
+              private authService: AuthService) {
+  }
 
-  constructor(
-    private databaseService: DatabaseService,
-    private authService: AuthService
-  ) { }
-
-  saveData() {
-    return this.databaseService.saveRecipes()
+  onSaveData() {
+    this.dataStorageService.storeRecipes()
       .subscribe(
-        (response) => console.log(response)
+        (response) => {
+          console.log(response);
+        }
       );
   }
 
-  fetchData() {
-    this.databaseService.getRecipes();
-  }
-
-  checkAuth() {
-    return this.authService.isAuthenticated();
+  onFetchData() {
+    this.dataStorageService.getRecipes();
   }
 
   onLogout() {
     this.authService.logout();
   }
-
 }

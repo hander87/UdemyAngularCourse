@@ -1,54 +1,33 @@
 <nav class="navbar navbar-default">
-
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-        aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" routerLink="/">Recipe Book</a>
+      <a routerLink="/" class="navbar-brand">Recipe Book</a>
     </div>
-    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active">
-          <a routerLink="/recipebook">Recipes</a>
-        </li>
-        <li routerLinkActive="active">
-          <a routerLink="/shoppinglist">Shopping List</a>
-        </li>
+        <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+        <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <ng-template [ngIf]="!checkAuth()">
-          <li routerLinkActive="active">
-            <a routerLink="/signup">Register</a>
-          </li>
-          <li routerLinkActive="active">
-            <a routerLink="/signin">Log In</a>
-          </li>
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li><a routerLink="/signup">Register</a></li>
+          <li><a routerLink="/signin">Login</a></li>
         </ng-template>
-        <li *ngIf="checkAuth()">
-            <a (click)="onLogout()">Log Out</a>
-          </li>
-        <li class="dropdown pull-right" appDropdown *ngIf="checkAuth()">
-          <a class="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage
-            <span class="caret"></span>
-          </a>
+
+        <li><a
+          style="cursor: pointer;"
+          (click)="onLogout()"
+          *ngIf="authService.isAuthenticated()">Logout</a></li>
+
+        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li>
-              <a (click)="saveData()">Save Changes</a>
-            </li>
-            <li>
-              <a (click)="fetchData()">Fetch (Overwrite)</a>
-            </li>
+            <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
+            <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
           </ul>
         </li>
       </ul>
-
     </div>
-    <!--/.nav-collapse -->
   </div>
-
 </nav>

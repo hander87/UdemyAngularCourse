@@ -1,27 +1,18 @@
-import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
-
-// FIREBASE SETTINGS: RULES
-// {
-//   "rules": {
-//     ".read": "auth != null",
-//     ".write": "auth != null"
-//   }
-// }
 
 @Injectable()
 export class AuthService {
   token: string;
 
-  constructor( private router: Router ) {}
+  constructor(private router: Router) {}
 
   signupUser(email: string, password: string) {
-    // getIdToken
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .catch(
         error => console.log(error)
-      );
+      )
   }
 
   signinUser(email: string, password: string) {
@@ -29,10 +20,10 @@ export class AuthService {
       .then(
         response => {
           this.router.navigate(['/']);
-          firebase.auth().currentUser.getIdToken()
+          firebase.auth().currentUser.getToken()
             .then(
               (token: string) => this.token = token
-            );
+            )
         }
       )
       .catch(
@@ -40,8 +31,13 @@ export class AuthService {
       );
   }
 
+  logout() {
+    firebase.auth().signOut();
+    this.token = null;
+  }
+
   getToken() {
-    firebase.auth().currentUser.getIdToken()
+    firebase.auth().currentUser.getToken()
       .then(
         (token: string) => this.token = token
       );
@@ -51,10 +47,4 @@ export class AuthService {
   isAuthenticated() {
     return this.token != null;
   }
-
-  logout() {
-    firebase.auth().signOut();
-    this.token = null;
-  }
-
 }

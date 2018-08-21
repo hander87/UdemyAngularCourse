@@ -1,24 +1,22 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  currentPage = 'recipies';
+  loadedFeature = 'recipe';
 
   ngOnInit() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyCKYSuqEwMTHXhDxHVzeIdTkmEPhk_vsbw',
-      authDomain: 'udemyangularcourse-courseapp.firebaseapp.com'
+      apiKey: "AIzaSyBrkKleAX_8jHpPmTchVBmDD7Hkj8TT1VE",
+      authDomain: "ng-recipe-book-3adbb.firebaseapp.com"
     });
   }
 
-  activateTopMenuPages(page: string) {
-    this.currentPage = page;
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
   }
-
 }
