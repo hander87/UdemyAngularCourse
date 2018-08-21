@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { Response } from '@angular/http';
 
 import { DatabaseService } from '../../shared/database.service';
 import { AuthService } from '../../auth/auth.service';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -19,9 +19,7 @@ export class HeaderComponent {
   saveData() {
     return this.databaseService.saveRecipes()
       .subscribe(
-        (response: HttpEvent<Object>) => {
-          console.log(response.type === HttpEventType.Sent);
-        }
+        (response: Response) => console.log(response)
       );
   }
 
