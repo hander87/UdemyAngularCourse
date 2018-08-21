@@ -20,8 +20,6 @@ export class DatabaseService {
   saveRecipes() {
     // const headers = new HttpHeaders().set('Authorization',  'Bearer *TOKEN CODE*').append('...More headers');
 
-    const token = this.authService.getToken();
-
     // return this.httpClient.put(this.fblink + '/recipes.json', this.recipeService.getRecipes(), {
     //   observe: 'body',
     //   params: new HttpParams().set('auth', token)
@@ -30,20 +28,14 @@ export class DatabaseService {
 
     const req = new HttpRequest('PUT', this.fblink, this.recipeService.getRecipes(), {
       reportProgress: true, // Gets the download PROGRESS // Type 1 = download, 2 = upload
-      params: new HttpParams().set('auth', token)
     });
     return this.httpClient.request(req);
 
   }
 
   getRecipes() {
-    const token = this.authService.getToken();
-
     // return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json?auth=' + token)
-    return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json?auth=' + token, {
-        observe: 'body',
-        responseType: 'json'
-      })
+    return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json')
       .pipe(map(
         (recipes) => {
           console.log(recipes); // This gives FULL HttpResponse! (body, header etc)
