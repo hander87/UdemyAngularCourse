@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-/* tslint:disable */
-/* tslint:enable */
-import 'rxjs/add/operator/map';
-
+import 'rxjs/Rx';
 
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
@@ -15,7 +12,6 @@ export class DataStorageService {
               private recipeService: RecipeService,
               private authService: AuthService) {
   }
-  fblink = 'https://udemyangularcourse-courseapp.firebaseio.com';
 
   storeRecipes() {
     // const headers = new HttpHeaders().set('Authorization', 'Bearer afdklasflaldf');
@@ -25,20 +21,20 @@ export class DataStorageService {
     //   params: new HttpParams().set('auth', token)
     //   // headers: headers
     // });
-    const req = new HttpRequest('PUT', this.fblink, this.recipeService.getRecipes(), {reportProgress: true});
+    const req = new HttpRequest('PUT', 'https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {reportProgress: true});
     return this.httpClient.request(req);
   }
 
   getRecipes() {
     // this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json?auth=' + token)
-    this.httpClient.get<Recipe[]>(this.fblink, {
+    this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', {
       observe: 'body',
       responseType: 'json'
     })
       .map(
         (recipes) => {
           console.log(recipes);
-          for (const recipe of recipes) {
+          for (let recipe of recipes) {
             if (!recipe['ingredients']) {
               recipe['ingredients'] = [];
             }
