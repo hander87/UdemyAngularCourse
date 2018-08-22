@@ -15,17 +15,17 @@ export class AuthService {
       .then(
         user => {
           this.store.dispatch(new AuthActions.Signup());
-          firebase.auth().currentUser.getToken()
+          firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => {
                 this.store.dispatch(new AuthActions.SetToken(token));
               }
-            )
+            );
         }
       )
       .catch(
         error => console.log(error)
-      )
+      );
   }
 
   signinUser(email: string, password: string) {
@@ -34,12 +34,12 @@ export class AuthService {
         response => {
           this.store.dispatch(new AuthActions.Signin());
           this.router.navigate(['/']);
-          firebase.auth().currentUser.getToken()
+          firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => {
                 this.store.dispatch(new AuthActions.SetToken(token));
               }
-            )
+            );
         }
       )
       .catch(
