@@ -10,19 +10,18 @@ import * as fromRecipe from '../store/recipe.reducers';
 
 @Injectable()
 export class RecipeEffects {
-  fblink = 'https://udemyangularcourse-courseapp.firebaseio.com';
   @Effect()
   recipeFetch = this.actions$
     .ofType(RecipeActions.FETCH_RECIPES)
     .pipe(switchMap((action: RecipeActions.FetchRecipes) => {
-      return this.httpClient.get<Recipe[]>(this.fblink + '/recipes.json', {
+      return this.httpClient.get<Recipe[]>('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', {
         observe: 'body',
         responseType: 'json'
       });
     }), map(
       (recipes) => {
         console.log(recipes);
-        for (const recipe of recipes) {
+        for (let recipe of recipes) {
           if (!recipe['ingredients']) {
             recipe['ingredients'] = [];
           }
@@ -39,7 +38,7 @@ export class RecipeEffects {
     .ofType(RecipeActions.STORE_RECIPES)
     .pipe(withLatestFrom(this.store.select('recipes')),
       switchMap(([action, state]) => {
-        const req = new HttpRequest('PUT', this.fblink + '/recipes.json', state.recipes, {reportProgress: true});
+        const req = new HttpRequest('PUT', 'https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', state.recipes, {reportProgress: true});
         return this.httpClient.request(req);
       }));
 

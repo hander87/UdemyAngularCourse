@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'
 import { CoreModule } from './core/core.module';
 import { reducers } from './store/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,16 +17,12 @@ import { environment } from '../environments/environment';
 
 import { AuthEffects } from './auth/store/auth.effects';
 
-// GETTING APP INFO
-import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'tour-of-heroes' }),
+    BrowserModule.withServerTransition({appId: "my-app"}),
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
@@ -40,13 +36,4 @@ import { isPlatformBrowser } from '@angular/common';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  // GETTING APP INFO
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    @Inject(APP_ID) private appId: string) {
-    const platform = isPlatformBrowser(platformId) ?
-      'in the browser' : 'on the server';
-    console.log(`Running ${platform} with appId=${appId}`);
-  }
- }
+export class AppModule { }
