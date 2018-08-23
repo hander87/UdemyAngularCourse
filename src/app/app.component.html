@@ -7,7 +7,9 @@
       <hr>
       <div
         style="width: 100px; height: 100px"
-        [@dState]="dstate">
+        [@dState]="dstate"
+        (@dState.start)="animationStarted($event)"
+        (@dState.done)="animationEnded($event)">
       </div>
       <hr>
       <div
