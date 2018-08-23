@@ -17,12 +17,16 @@ import { environment } from '../environments/environment';
 
 import { AuthEffects } from './auth/store/auth.effects';
 
+// GETTING APP INFO
+import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserModule.withServerTransition({ appId: 'tour-of-heroes' }),
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
@@ -36,4 +40,13 @@ import { AuthEffects } from './auth/store/auth.effects';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  // GETTING APP INFO
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string) {
+    const platform = isPlatformBrowser(platformId) ?
+      'in the browser' : 'on the server';
+    console.log(`Running ${platform} with appId=${appId}`);
+  }
+ }
