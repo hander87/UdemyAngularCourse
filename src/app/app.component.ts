@@ -21,17 +21,26 @@ import { trigger , state , style, transition, animate } from '@angular/animation
         'background-color': 'red',
         transform: 'translateX(0) scale(1)'
       })),
-      state('shrunken', style({
-        'background-color': 'green',
-        transform: 'translateX(0px) scale(0.5)'
-      })),
       state('highlighted', style({
         'background-color': 'blue',
         transform: 'translateX(100px) scale(1)'
       })),
+      state('shrunken', style({
+        'background-color': 'green',
+        transform: 'translateX(0) scale(0.5)',
+      })),
       transition('normal => highlighted', animate(200)),
       transition('highlighted => normal', animate(900)),
-      transition('shrunken <=> *', animate(500)),
+      transition('shrunken <=> *', [
+        style({
+          borderRadius: '0',
+          'background-color': 'orange'
+        }),
+        animate(1000, style({
+          borderRadius: '50px'
+        })),
+        animate(500)
+      ]),
     ]),
   ]
 
