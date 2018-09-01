@@ -37,4 +37,4 @@ export class SetToken implements Action {
   constructor(public payload: string) {}
 }
 
-export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup;
+export type AuthActions = Signup | Signin | Logout | SetToken | TrySignup | TrySignin;
