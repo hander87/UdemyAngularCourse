@@ -53,7 +53,7 @@ export function recipeReducers(state = initialState, action: RecipeActions.Recip
         recipes[action.payload.index] = updatedRecipe;
         return {
           ...state,
-          recipe: recipes
+          recipes: recipes
         };
       case (RecipeActions.DELETE_RECIPE):
         const oldRecipes = [...state.recipes];
