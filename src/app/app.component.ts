@@ -1,15 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  genders = ['male', 'female', 'other'];
+  signupForm: FormGroup;
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      'username': new FormControl('Default Hannes'),
+      'email': new FormControl('asdf@sadf.se'),
+      'gender': new FormControl('male')
+    });
   }
 
+  onSubmit() {
+    console.log(this.signupForm);
+  }
 }
